@@ -1,18 +1,15 @@
-class Person {
-    public String name = "John";
-    private int age = 25;
-    protected String address = "Dhaka";
-
-    public void showAge() {
-        System.out.println("Age: " + age);
+class Student{
+    String name;
+    int age;
+    void displayinfo(){
+        System.out.println("Name:"+name+",Age:"+age);
     }
 }
-
 public class Main {
-    public static void main(String[] args) {
-        Person p = new Person();
-        System.out.println("Name: " + p.name);
-        p.showAge();
-        System.out.println("Address: " + p.address);
+    public static void main(String[] args){
+        Student s1=new Student();
+        s1.name="Alice";
+        s1.age=20;
+        s1.displayinfo();
     }
 }
