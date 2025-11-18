@@ -1,0 +1,68 @@
+import java.util.*;
+
+
+// Implementing Queue and Stack using PriorityQueue with custom comparator
+public class PriorityQueueStackQueue {
+
+
+// Stack using PriorityQueue (LIFO)
+static class StackUsingPQ {
+private PriorityQueue<int[]> pq;
+private int index = 0;
+
+
+public StackUsingPQ() {
+// Higher index = higher priority
+pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+}
+
+
+public void push(int x) {
+pq.offer(new int[]{x, index++});
+}
+
+
+public int pop() {
+return pq.poll()[0];
+}
+}
+
+
+// Queue using PriorityQueue (FIFO)
+static class QueueUsingPQ {
+private PriorityQueue<int[]> pq;
+private int index = 0;
+
+
+public QueueUsingPQ() {
+// Lower index = higher priority
+pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+}
+
+
+public void add(int x) {
+pq.offer(new int[]{x, index++});
+}
+
+
+public int remove() {
+return pq.poll()[0];
+}
+}
+
+
+public static void main(String[] args) {
+StackUsingPQ st = new StackUsingPQ();
+st.push(10);
+st.push(20);
+st.push(30);
+System.out.println("Stack pop: " + st.pop());
+
+
+QueueUsingPQ q = new QueueUsingPQ();
+q.add(5);
+q.add(15);
+q.add(25);
+System.out.println("Queue remove: " + q.remove());
+}
+}
