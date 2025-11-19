@@ -1,0 +1,78 @@
+interface RoboRules {
+    void start();
+    void shutdown();
+}
+abstract class WalkingRobot implements RoboRules {
+
+    // common method with real code
+    public void walk() {
+        System.out.println("Walking using standard RoboLand algorithm...");
+    }
+
+    // abstract method → walking style differs for each robot
+    abstract void specialMove();
+}
+class PoliceRobot extends WalkingRobot {
+
+    @Override
+    public void start() {
+        System.out.println("Police Robot starting...");
+    }
+
+    @Override
+    public void shutdown() {
+        System.out.println("Police Robot shutting down.");
+    }
+
+    @Override
+    void specialMove() {
+        System.out.println("Police Robot performs Tactical Roll!");
+    }
+}
+public class RoboLandApp {
+    public static void main(String[] args) {
+        PoliceRobot pr = new PoliceRobot();
+
+        pr.start();
+        pr.walk();
+        pr.specialMove();
+        pr.shutdown();
+    }
+}
+interface TestInterface {
+    void doTask();
+}
+
+abstract class TestAbstract {
+    abstract void doTask();
+}
+
+class InterfaceImpl implements TestInterface {
+    public void doTask() {
+        System.out.println("Interface Task Done");
+    }
+}
+
+class AbstractImpl extends TestAbstract {
+    void doTask() {
+        System.out.println("Abstract Class Task Done");
+    }
+}
+
+public class SpeedTest {
+    public static void main(String[] args) {
+        TestInterface i = new InterfaceImpl();
+        TestAbstract a = new AbstractImpl();
+
+        long start1 = System.nanoTime();
+        i.doTask();
+        long end1 = System.nanoTime();
+
+        long start2 = System.nanoTime();
+        a.doTask();
+        long end2 = System.nanoTime();
+
+        System.out.println("Interface Call Time: " + (end1 - start1));
+        System.out.println("Abstract Class Call Time: " + (end2 - start2));
+    }
+}
